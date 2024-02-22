@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Book Recommender System</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <style>
+        body {
+            background-color: rgb(50, 48, 48);
+            color: white;
+        }
+
+        .navbar {
+            background-color: #3e55d8;
+        }
+
+        .container {
+            padding-top: 20px;
+        }
+
+        .book-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+
+        .book-card {
+            margin-top: 20px;
+            background-color: #262626;
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+        }
+
+        .book-card img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 4px;
+        }
+
+        .release-years {
+            margin-top: 20px;
+        }
+
+        .release-years h2 {
+            font-size: 24px;
+        }
+
+        .release-years ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .release-years li {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <a class="navbar-brand">My Book Recommender</a>
+        <ul class="nav navbar-nav">
+            <li><a href="/">Home</a></li>
+            <li><a href="/recommend">Recommend</a></li>
+            <li><a>Contact</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-9">
+                <h1 style="font-size: 50px">Top 50 Books</h1>
+                <div class="book-container">
+                    {% for i in range(book_name|length) %}
+                        <div class="col-md-4">
+                            <div class="book-card">
+                                <img src="{{ image[i] }}" alt="{{ book_name[i] }}">
+                                <p>{{ book_name[i] }}</p>
+                                <h4>{{ author[i] }}</h4>
+                                <h4>Votes - {{ votes[i] }}</h4>
+                                <h4>Rating - {{ rating[i] }}</h4>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <div class="col-md-3 release-years">
+                <h2>Release Years</h2>
+                <ul class="list-unstyled">
+                    {% for year in your_years_list %}
+                        <li style="display: inline-block; margin-right: 10px;">
+                            <a href="/books/{{ year }}">{{ year }}</a></li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
